@@ -1,12 +1,12 @@
 package me.dio.IALol.domain.ports;
 
-import me.dio.IALol.domain.models.Champions;
+import me.dio.IALol.domain.models.Champion;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ChampionsRepository {
-    List<Champions> findAll();
+    List<Champion> findAll();
 
-    Optional<Champions> findById(Long id);
+    Optional<Champion> findById(Long id);
 }
