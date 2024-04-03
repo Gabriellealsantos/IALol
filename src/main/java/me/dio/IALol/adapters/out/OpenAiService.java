@@ -1,13 +1,15 @@
 package me.dio.IALol.adapters.out;
 
-import me.dio.IALol.domain.ports.GenerativeAiApi;
+import me.dio.IALol.domain.ports.GenerativeAiService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(name = "openAiChatApi", url = "${openai.api-key}")
-public interface OpenAiApi extends GenerativeAiApi {
+@ConditionalOnProperty(name = "generative-ai.provider", havingValue = "OPENAI")
+@FeignClient(name = "openAiApi", url = "${openai.base-url}")
+public interface OpenAiService extends GenerativeAiService {
 
     @PostMapping("/v1/chat/completions")
     OpenAiChatCompletionResp chatCompletion(OpenAiChatCompletionReq req);
