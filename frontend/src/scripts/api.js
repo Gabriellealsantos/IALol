@@ -1,4 +1,3 @@
-import API_URL from './config.js';
 
 const routes = {
   champions: `${API_URL}/champions`,
