@@ -1,6 +1,6 @@
 const routes = {
-  champions: "http://localhost:8080/champions",
-  ask: "http://localhost:8080/champions/{id}/ask",
+  champions: "http://sdw24.sa-east-1.elasticbeanstalk.com/champions",
+  ask: "http://sdw24.sa-east-1.elasticbeanstalk.com/champions/{id}/ask",
 };
 
 const apiService = {
