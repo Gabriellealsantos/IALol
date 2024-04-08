@@ -1,4 +1,4 @@
-import { API_URL } from './config.js';
+const API_URL = "https://championsapilol.onrender.com";
 
 const routes = {
   champions: `${API_URL}/champions`,
