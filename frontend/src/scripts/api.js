@@ -1,6 +1,7 @@
+
 const routes = {
-  champions: "http://sdw24.sa-east-1.elasticbeanstalk.com/champions",
-  ask: "http://sdw24.sa-east-1.elasticbeanstalk.com/champions/{id}/ask",
+  champions: `${API_URL}/champions`,
+  ask: `${API_URL}/champions/{id}/ask`,
 };
 
 const apiService = {
@@ -27,6 +28,7 @@ const apiService = {
     const response = await fetch(route, options);
     return await response.json();
   },
+  
 };
 
 const state = {
@@ -54,11 +56,25 @@ async function loadChampions() {
 }
 
 async function renderChampions() {
-
   const championsData = state.value.champions;
-  const elements = championsData.map(
-    (character) => 
-      `<div class="timeline-carousel__item" onclick= "onChangeChampionSelected(${character.id}, '${character.imageUrl}')">
+
+  // Verificar se championsData.contents é uma string antes de prosseguir
+  if (typeof championsData.contents !== 'string') {
+    console.error("Os dados dos campeões não estão no formato esperado:", championsData);
+    return;
+  }
+
+  // Converter a string JSON para um objeto JavaScript
+  const championsArray = JSON.parse(championsData.contents);
+
+  // Verificar se championsArray é um array antes de prosseguir
+  if (!Array.isArray(championsArray)) {
+    console.error("Os dados dos campeões não são um array:", championsArray);
+    return;
+  }
+
+  const elements = championsArray.map((character) => 
+    `<div class="timeline-carousel__item" onclick= "onChangeChampionSelected(${character.id}, '${character.imageUrl}')">
       <div class="timeline-carousel__image">
         <div class="media-wrapper media-wrapper--overlay"
           style="background: url('${character.imageUrl}') center center; background-size:cover;">
