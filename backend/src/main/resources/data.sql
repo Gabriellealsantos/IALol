@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS champions (
     role VARCHAR(255) NOT NULL,
     lore TEXT,
     image_url VARCHAR(255)
-    );
+);
 
 INSERT INTO champions (name, role, lore, image_url) VALUES
     ('Jinx', 'Atirador', 'Uma criminosa impulsiva e maníaca de Zaun, Jinx vive para disseminar o caos sem se preocupar com as consequências. Com um arsenal de armas mortais, ela detona as explosões mais altas e mais luminosas para deixar um rastro de destruição e pânico por onde passa. Jinx abomina o tédio e deixa alegremente sua marca caótica de pandemônio aonde quer que vá.', 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jinx_0.jpg'),
