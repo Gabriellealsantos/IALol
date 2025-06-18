@@ -1,1 +1,1 @@
-const API_URL = "https://championsapilol.onrender.com";
+const API_URL = "http://localhost:8080";
