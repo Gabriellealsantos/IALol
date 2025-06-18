@@ -93,16 +93,17 @@ async function resetForm() {
 
 async function getRandomQuote() {
   const quotes = [
-    "Manda ver meu nobre",
-    "Pode vir quente que eu to fervendo",
-    "Aguardo sua pergunta",
-    "Espero anciosamente pela sua pergunta",
-    "Estou começando a ficar com tédio...",
-    "Tenha vidas a salvar, vá depressa com isso",
-    "Não vai ficar ai o dia todo vai?",
-    "Talvez seja melhor ir jogar Dota",
-    "Vamos que vamos meu chapa"
-  ]
+  "Manda ver meu nobre",
+  "Pode vir quente que eu to fervendo",
+  "Aguardo sua pergunta",
+  "Espero anciosamente pela sua pergunta",
+  "Estou começando a ficar com tédio...",
+  "Tenha vidas a salvar, vá depressa com isso",
+  "Não vai ficar ai o dia todo vai?",
+  "Talvez seja melhor ir jogar Dota",
+  "Vamos que vamos meu chapa",
+];
+
 
   const randomIndex = Math.floor(Math.random() * quotes.length)
 
@@ -112,9 +113,24 @@ async function getRandomQuote() {
 async function fetchAskChampion() {
   const id = state.views.avatar.dataset.id;
   const message = state.views.question.value;
+  const button = document.getElementById("btn-get-api");
 
-  const response = await apiService.postAskChampions(id, message);
-  state.views.response.textContent = response.answer;
+  if (!message.trim()) return; // ignora se estiver vazio
+
+  // Desativa botão e mostra carregando...
+  button.disabled = true;
+  button.textContent = "Carregando...";
+
+  try {
+    const response = await apiService.postAskChampions(id, message);
+    state.views.response.textContent = response.answer;
+  } catch (error) {
+    state.views.response.textContent = "Erro ao buscar resposta.";
+  }
+
+  // Reativa botão
+  button.disabled = false;
+  button.textContent = "Perguntar";
 }
 
 async function loadCarrousel() {

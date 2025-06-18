@@ -1,1 +1,1 @@
-const API_URL = "http://localhost:8080"; 
+const API_URL = "https://uv6kfod6ej.execute-api.us-east-1.amazonaws.com"; 
